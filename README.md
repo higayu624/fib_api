@@ -3,8 +3,6 @@
 
 ## フィボナッチ数を返すAPIサービスの開発
 
-## Golang Air AWS ECS(Fargate)
-
 実行方法
 
 ```bash
@@ -13,6 +11,9 @@ cd fib_api
 go mod init fib_api
 docker compose up --no-deps --build go
 ```
+
+## 採用した技術一覧
+Golang Air AWS ECS(Fargate)
 
 ## 技術選定の理由
 
