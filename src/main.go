@@ -1,14 +1,11 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
+import "log"
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "hello golang")
-	})
+	log.Printf("Server activation")
+	log.Printf("waiting http access")
 
-	http.ListenAndServe(":8081", nil)
+	router := initRouter()
+	router.Run(":8081")
 }

@@ -10,14 +10,18 @@ git clone https://github.com/higayu624/fib_api.git
 cd fib_api
 go mod init fib_api
 docker compose up --no-deps --build go
+# import Errorなどが出る時よしなにモジュールの依存関係を整理してくれる（go.modファイルがあるディレクトリで実行）
+go mod tidy
 ```
 
 ## 採用した技術一覧
-Golang Air AWS ECS(Fargate)
+Golang Gin Air AWS ECS(Fargate)
 
 ## 技術選定の理由
 
 Golang：インタプリタ言語ではなく、コンパイル言語であるため、実行速度が速く、サービスが大きくなって行った時に恩恵を受けやすい。
+
+Gin：よくEchoと比較される。Echoの方が処理速度はGinより速い。それでもGinを採用したのは、セキュリティがより強いため。プロダクトは必ずユーザ情報を扱うため処理速度があまり変わらないのであれば、セキュリティがより優れている方を採用するべきだと考えた。
 
 Air：ホットリロードをするために導入（変更するたびサーバーを再起動しなくていいため開発速度が早くなる）
 
