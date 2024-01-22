@@ -31,11 +31,18 @@ func TestGetFibonacci(t *testing.T) {
 				body:   `{"result":218922995834555169026}`,
 			},
 		},
-		"NG when number type is not int": {
+		"NG when the number type is not int": {
 			number: "d",
 			want: want{
 				status: http.StatusBadRequest,
-				body:   `{"message":"bad request","status":"400"}`,
+				body:   `{"message":"bad request","status":400}`,
+			},
+		},
+		"NG when the number is negative": {
+			number: -1,
+			want: want{
+				status: http.StatusBadRequest,
+				body:   `{"message":"bad request","status":400}`,
 			},
 		},
 	}

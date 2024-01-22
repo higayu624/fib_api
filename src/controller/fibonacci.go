@@ -35,6 +35,13 @@ func GetFibonacci() gin.HandlerFunc {
 			})
 			return
 		}
+		if request.number < 1 {
+			ctx.JSON(http.StatusBadRequest, gin.H{
+				"status":  http.StatusBadRequest,
+				"message": "bad request",
+			})
+			return
+		}
 
 		// Calculate the Fibonacci number of the nth term
 		modelResponse.fibonacci = model.CalclateFibonacci(&request.number)
