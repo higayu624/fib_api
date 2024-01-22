@@ -11,13 +11,14 @@ import (
 func TestCalclateFibonacci(t *testing.T) {
 	t.Parallel()
 
-	fibonacciOutputOK, _ := decimal.NewFromString("218922995834555169026")
+	var fibonacciOutputOK decimal.Decimal
+	fibonacciOutputOK, _ = decimal.NewFromString("218922995834555169026")
 
 	type input struct {
 		number int
 	}
 	type want struct {
-		fibonacci *decimal.Decimal
+		fibonacci decimal.Decimal
 	}
 
 	tests := map[string]struct {
@@ -29,7 +30,7 @@ func TestCalclateFibonacci(t *testing.T) {
 				number: 99,
 			},
 			want{
-				fibonacci: &fibonacciOutputOK,
+				fibonacci: fibonacciOutputOK,
 			},
 		},
 	}
@@ -38,8 +39,8 @@ func TestCalclateFibonacci(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			response := model.CalclateFibonacci(tt.input.number)
-			if *response != *tt.want.fibonacci {
+			response := model.CalclateFibonacci(&tt.input.number)
+			if response.Equal(tt.want.fibonacci) == false {
 				t.Errorf("test case [%s]: CalclateFibonacci response is not equal want.fibonacci", name)
 				t.Errorf("want %v", tt.want.fibonacci)
 				t.Errorf("response %v", response)

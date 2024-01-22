@@ -11,7 +11,7 @@ import (
 )
 
 type requestFibonacciNumber struct {
-	number int64
+	number int
 }
 
 type fibonacci struct {
@@ -27,7 +27,7 @@ func GetFibonacci() gin.HandlerFunc {
 
 		// Recieved queryParam and validation
 		requestString := ctx.Query("n")
-		request.number, err = strconv.ParseInt(requestString, 10, 64)
+		request.number, err = strconv.Atoi(requestString)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"status":  http.StatusBadRequest,
@@ -37,7 +37,7 @@ func GetFibonacci() gin.HandlerFunc {
 		}
 
 		// Calculate the Fibonacci number of the nth term
-		modelResponse.fibonacci = model.CalclateFibonacci(int(request.number))
+		modelResponse.fibonacci = model.CalclateFibonacci(&request.number)
 
 		// Make response
 		decimal.MarshalJSONWithoutQuotes = true // decimal型からintに変換する設定（これやるとJSON文字列に変換するときに自動でやってくれる）

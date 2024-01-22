@@ -5,6 +5,7 @@ go 1.19
 require (
 	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/google/go-cmp v0.5.5
 	github.com/shopspring/decimal v1.3.1
 )
 
