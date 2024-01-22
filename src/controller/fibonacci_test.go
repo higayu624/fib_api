@@ -49,9 +49,6 @@ func TestGetFibonacci(t *testing.T) {
 			response := httptest.NewRecorder()
 
 			engine := gin.New()
-			// if tt.number != nil {
-
-			// }
 			engine.Use(func(ctx *gin.Context) {
 				c, _ := gin.CreateTestContext(response)
 				c.Request, _ = http.NewRequest(
