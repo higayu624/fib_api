@@ -14,6 +14,12 @@ docker compose up --no-deps --build go
 go mod tidy
 ```
 
+単体テストの実行方法
+```bash
+cd src
+go test -r (テストしたい関数名の一部 例：Fibonacci) ./...
+```
+
 ## 採用した技術一覧
 Golang Gin Air AWS ECS(Fargate)
 
