@@ -21,12 +21,21 @@ func TestGetFibonacci(t *testing.T) {
 	}
 
 	tests := map[string]struct {
-		want want
+		number any
+		want   want
 	}{
 		"OK": {
+			number: 99,
 			want: want{
 				status: http.StatusOK,
 				body:   `{"result":218922995834555169026}`,
+			},
+		},
+		"NG when number type is not int": {
+			number: "d",
+			want: want{
+				status: http.StatusBadRequest,
+				body:   `{"message":"bad request","status":"400"}`,
 			},
 		},
 	}
@@ -35,18 +44,19 @@ func TestGetFibonacci(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			number := 99
-			fibAPIRoot := fmt.Sprintf("/fib?n=%d", number)
+			fibAPIRoot := fmt.Sprintf("/fib?n=%d", tt.number)
 
 			response := httptest.NewRecorder()
 
 			engine := gin.New()
+			// if tt.number != nil {
+
+			// }
 			engine.Use(func(ctx *gin.Context) {
 				c, _ := gin.CreateTestContext(response)
-
 				c.Request, _ = http.NewRequest(
 					http.MethodGet,
-					fmt.Sprintf("/fib?n=%d", number),
+					fmt.Sprintf("/fib?n=%d", tt.number),
 					nil,
 				)
 				c.Request.Header.Set("content-Type", "application/json")
