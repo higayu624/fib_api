@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"time"
 
 	"fib_api/controller"
@@ -13,7 +14,13 @@ var fibAPIRoot = "fib"
 
 func initRouter() *gin.Engine {
 	router := gin.Default()
-	// router.ContextWithFallback = true
+	router.ContextWithFallback = true
+	router.NoRoute(func(ctx *gin.Context) {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"status":  http.StatusNotFound,
+			"message": "404 page not found",
+		})
+	})
 
 	router.Use(cors.New(cors.Config{
 		// 許可したいHTTPメソッドの一覧
