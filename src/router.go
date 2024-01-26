@@ -23,19 +23,15 @@ func initRouter() *gin.Engine {
 	})
 
 	router.Use(cors.New(cors.Config{
-		// 許可したいHTTPメソッドの一覧
 		AllowMethods: []string{
 			"GET",
 		},
-		// 許可したいHTTPリクエストヘッダの一覧
 		AllowHeaders: []string{
 			"Content-Type",
 		},
-		// 許可したいアクセス元の一覧
 		AllowOrigins: []string{
 			"http://localhost",
 		},
-		// // cookieなどの情報を必要とするかどうか
 		AllowCredentials: false,
 		MaxAge:           24 * time.Hour,
 	}))

@@ -47,7 +47,7 @@ func GetFibonacci() gin.HandlerFunc {
 		modelResponse.fibonacci = model.CalclateFibonacci(&request.number)
 
 		// Make response
-		decimal.MarshalJSONWithoutQuotes = true // decimal型からintに変換する設定（これやるとJSON文字列に変換するときに自動でやってくれる）
+		decimal.MarshalJSONWithoutQuotes = true
 		response := make(map[string]*decimal.Decimal)
 		response["result"] = modelResponse.fibonacci
 
