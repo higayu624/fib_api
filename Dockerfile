@@ -9,7 +9,7 @@ ENV TZ Asia/Tokyo
 WORKDIR /go/src/fib_api
 COPY src/ .
 
-EXPOSE 8081
+EXPOSE 5000
 
 # RUN go mod init fib_api
 RUN apk upgrade --update && apk --no-cache add git
