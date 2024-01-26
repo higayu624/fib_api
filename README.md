@@ -36,6 +36,7 @@ curl -X GET -H "Content-Type: application/json" "http://fibapi.com/fib?n=99
 ## プロダクトの価値
 - 人が計算するのではなく、機械が計算するため速い
 - 正確な値
+
 この2つはmustで満たせるプロダクトを目指す
 
 ## 採用した技術一覧
