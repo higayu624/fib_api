@@ -17,6 +17,9 @@ go mod tidy
 単体テストの実行方法
 ```bash
 cd src
+go test ./...
+
+# 特定の関数のテストを行いたい場合
 go test -r (テストしたい関数名の一部 例：Fibonacci) ./...
 ```
 
@@ -36,7 +39,7 @@ curl -X GET -H "Content-Type: application/json" "http://fibapi.com/fib?n=99
 この2つはmustで満たせるプロダクトを目指す
 
 ## 採用した技術一覧
-Golang Gin Air AWS ECS(Fargate) MVC
+Golang Gin Air MVC AWS ECS(Fargate) Route53 ACM
 
 ## 技術選定の理由
 
